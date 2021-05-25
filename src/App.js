@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import Home from './components/Home'
-import MiniPage from './components/MiniPage'
+import Header from './components/Header'
+import routes  from './routes'
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <MiniPage />
+      <Header />
+      { routes }
     </div>
   );
 }

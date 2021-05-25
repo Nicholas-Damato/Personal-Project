@@ -5,6 +5,13 @@
 --     minion_id INT REFERENCES minions(minion_id)
 -- );
 
+-- CREATE TABLE user_notes(
+--     note_id SERIAL PRIMARY KEY,
+--     user_id INT REFERENCES users(user_id),
+--     note TEXT
+-- );
+
+
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS mounts;
 DROP TABLE IF EXISTS minions;
@@ -45,8 +52,3 @@ CREATE TABLE user_to_mount(
     mount_id INT REFERENCES mounts(mount_id)
 );
 
-CREATE TABLE user_notes(
-    note_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
-    note TEXT
-);

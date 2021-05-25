@@ -18,8 +18,8 @@ module.exports = {
     login: async (req, res) => {
         const db = req.app.get('db')
         const { username, password } = req.body
-        const [ result ] = await db.auth.check_user(username)
-        if(!result) {
+        const [ user ] = await db.auth.check_user(username)
+        if(!user) {
             return res.status(401).send('Username not found')
         }
         const isAuthenticated = bcrypt.compareSync(password, user.password)
@@ -32,5 +32,10 @@ module.exports = {
     logout: (req, res) => {
         req.session.destroy()
         res.sendStatus(200)
+    },
+    editName: (req, res) => {
+    const db = req.app.get('db')
+    const { user } = req.session
+    db.auth.update_user(user.user_id)
     }
 }

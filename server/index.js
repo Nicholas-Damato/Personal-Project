@@ -8,6 +8,7 @@ const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 // CONTROLLERS
 const authCtrl = require('./controllers/authController')
 const miniCtrl = require('./controllers/minionController')
+const mountCtrl = require('./controllers/mountController')
 
 const app = express()
 
@@ -35,5 +36,12 @@ massive({
 app.post(`/auth/register`, authCtrl.register)
 app.post(`/auth/login`, authCtrl.login)
 app.get(`/auth/logout`, authCtrl.logout)
+app.put(`/auth/username`, authCtrl.editName)
 
 app.get(`/api/mini`, miniCtrl.getMini)
+app.get(`/api/miniuser`, miniCtrl.getUserMini)
+app.delete(`/api/mini/:id`, miniCtrl.deleteUserMinion)
+
+app.get(`/api/mount`, mountCtrl.getMount)
+app.get(`/api/mountuser`, mountCtrl.getUserMount)
+app.delete(`/api/mount/:mini_id`, mountCtrl.deleteUserMount)

@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './context/AuthContext'
+import { Provider } from 'react-redux'
+import store from './redux/store'
+// import { AuthProvider } from './context/AuthContext'
 import { HashRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-    <AuthProvider>
+      <Provider store={store}>
+    {/* <AuthProvider> */}
     <App />
-    </AuthProvider>
+    {/* </AuthProvider> */}
+      </Provider>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')

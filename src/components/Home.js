@@ -13,7 +13,7 @@ const Home = (props) => {
         axios.post(`/auth/register`, { username, password })
         .then(res => {
             dispatch(loginUser(res.data))
-            props.history.push('/mini')
+            props.history.push('/user')
         })
         .catch(err => console.log(err))
     }
@@ -22,7 +22,7 @@ const Home = (props) => {
         axios.post(`/auth/login`, { username, password })
         .then(res => {
             dispatch(loginUser(res.data))
-            props.history.push('/mini')
+            props.history.push('/user')
         })
         .catch(err => console.log(err))
     }

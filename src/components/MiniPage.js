@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const MiniPage = (props) => {
@@ -16,7 +17,11 @@ const MiniPage = (props) => {
 
     return(
         <div>
-            
+            <header>
+            <Link to='/mini'> MINI </Link> 
+            <Link to='/mount'> MOUNT </Link>
+            <Link to='/user'> USER PAGE </Link>
+            </header>
         </div>
     )
 }

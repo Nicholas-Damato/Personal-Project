@@ -2,9 +2,6 @@
 
 .env
 
-/db/minion_data
-/db/mount_data
-
 # dependencies
 /node_modules
 /.pnp

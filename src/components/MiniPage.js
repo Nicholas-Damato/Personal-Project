@@ -22,6 +22,16 @@ const MiniPage = (props) => {
             <Link to='/mount'> MOUNT </Link>
             <Link to='/user'> USER PAGE </Link>
             </header>
+            <div>
+                {mini.map((mini) => {
+                    return (
+                        <div>
+                            <h1> {mini.minion_name} </h1>
+                    <img src={mini.minion_picture} />
+                    </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }

@@ -1,2 +1,2 @@
 SELECT * FROM minions
-ORDER BY minion_id ASC;
+ORDER BY minion_name ASC;

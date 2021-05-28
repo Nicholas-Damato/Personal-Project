@@ -1,2 +1,2 @@
 SELECT * FROM mounts
-ORDER BY mount_id ASC;
+ORDER BY mount_name ASC;

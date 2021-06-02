@@ -20,10 +20,20 @@ module.exports = {
         .catch(err => console.log(err))
     },
     deleteUserMount: (req, res) => {
-        const db = req.app.et('db')
+        const db = req.app.get('db')
         const { user } = req.session
         const { mount_id } = req.params
         db.mounts.delete_user_mount(user.user_id, mount_id)
+        .then(mount => {
+            res.status(200).send(mount)
+        })
+        .catch(err => console.log(err))
+    },
+    addMount: (req, res) => {
+        const db = req.app.get('db')
+        const { user } = req.session
+        const { mount_id } = req.params
+        db.mounts.add_mount(user.user_id, mount_id)
         .then(mount => {
             res.status(200).send(mount)
         })

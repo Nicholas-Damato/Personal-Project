@@ -27,6 +27,8 @@ module.exports = {
             return res.status(401).send('Password is incorrect')
         }
         delete user.password
+        req.session.user = user;
+        console.log(req.session.user)
         return res.status(200).send(req.session.user)
     },
     logout: (req, res) => {
@@ -36,6 +38,7 @@ module.exports = {
     editName: (req, res) => {
     const db = req.app.get('db')
     const { user } = req.session
-    db.auth.update_user(user.user_id)
+    const { username } = req.body
+    db.auth.update_user(user.user_id, username)
     }
 }

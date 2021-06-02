@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToPage } from '../redux/itemReducer'
 
 const MountPage = (props) => {
     const [ mount, setMount ] = useState([])
+    const dispatch = useDispatch()
     
     useEffect(() => {
         axios.get('/api/mount')
@@ -13,23 +16,47 @@ const MountPage = (props) => {
         .catch(err => console.log(err))
     }, [])
 
+    const addToPage = (mount_id) => {
+        axios.post(`/api/addmount/${mount_id}`)
+        .then((res) => {
+            dispatch(addToPage(res.data))
+        })
+        .catch(err => console.log(err))
+    }
+
+
     console.log(mount)
-    return (
-        <div>
-            <header>
-            <Link to='/mini'> MINI </Link> 
-            <Link to='/mount'> MOUNT </Link>
-            <Link to='/user'> USER PAGE </Link>
+    return(
+        <div className='page'>
+            <header className='sidebar'>
+                <div className='in-side'>
+            <Link className='link-button' to='/mini'> MINIONS </Link> 
+            <Link className='link-button' to='/mount'> MOUNT </Link>
+            <Link className='link-button' to='/user'> USER PAGE </Link>
+                </div>
             </header>
-            <h1> we are here </h1>
-            {mount.map((mount) => {
-                return <div> 
-                  <h1>  {mount.mount_name} </h1>
-                  <img src={mount.mount_picture} />
-                    </div>
-            })}
+            <div>
+            <table className='table'>
+            <tr className='first-row'>
+                     <th>Source</th>
+                     <th>Name</th>
+                     <th>Image</th>
+            </tr>
+                {mount.map((mount) => {
+                    return (
+                        <div className='item' onClick={() => addToPage(mount.mount_id)}>
+                            <tr className='data'>
+                                <td>{mount.mount_description}</td>
+                                <td>{mount.mount_name}</td>
+                                <td className='image'><img src={mount.mount_picture} /></td>
+                            </tr>
+                        </div>
+                    
+                    )
+                })}
+                </table>
+            </div>
         </div>
     )
 }
-
 export default MountPage

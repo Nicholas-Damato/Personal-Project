@@ -15,7 +15,10 @@ const Home = (props) => {
             dispatch(loginUser(res.data))
             props.history.push('/user')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            alert('this username is taken')
+        })
     }
 
     const handleLogin = (username, password) => {
@@ -30,11 +33,12 @@ const Home = (props) => {
 
     // const { auth, setAuth, handleLogin, handleRegister } = useContext(AuthContext)
     return (
-        <div>
-            <input value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <input value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={() => handleLogin(username, password)}>Login</button>
-            <button onClick={() => handleRegister(username, password)}>Register</button>
+        <div className='home'>
+            <h1 className='title'> The Collector </h1>
+            <input className='input' value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <input className='input' value={password} type='password' onChange={(e) => setPassword(e.target.value)}/>
+            <button className='button' onClick={() => handleLogin(username, password)}>Login</button>
+            <button className='button' onClick={() => handleRegister(username, password)}>Register</button>
         </div>
     )
 }

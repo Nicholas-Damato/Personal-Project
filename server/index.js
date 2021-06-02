@@ -39,9 +39,11 @@ app.get(`/auth/logout`, authCtrl.logout)
 app.put(`/auth/username`, authCtrl.editName)
 
 app.get(`/api/mini`, miniCtrl.getMini)
+app.post(`/api/addmini/:mini_id`, miniCtrl.addMinion)
 app.get(`/api/miniuser`, miniCtrl.getUserMini)
-app.delete(`/api/mini/:id`, miniCtrl.deleteUserMinion)
+app.delete(`/api/mini/:mini_id`, miniCtrl.deleteUserMinion)
 
 app.get(`/api/mount`, mountCtrl.getMount)
+app.post(`/api/addmount/:mount_id`, mountCtrl.addMount)
 app.get(`/api/mountuser`, mountCtrl.getUserMount)
-app.delete(`/api/mount/:mini_id`, mountCtrl.deleteUserMount)
+app.delete(`/api/mount/:mount_id`, mountCtrl.deleteUserMount)

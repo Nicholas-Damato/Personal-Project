@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 import authReducer from './authReducer'
+import itemReducer from './itemReducer'
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    item: itemReducer
 })
 
 export default createStore(rootReducer)

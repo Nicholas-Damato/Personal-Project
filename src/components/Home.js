@@ -16,8 +16,11 @@ const Home = (props) => {
             props.history.push('/user')
         })
         .catch(err => {
-            console.log(err)
-            alert('this username is taken')
+            if(err.response.status === 405){
+                alert('Please enter in a valid password')
+            } else if ( err.response.status = 409){
+                alert('Username is already taken')
+            }
         })
     }
 
@@ -27,7 +30,13 @@ const Home = (props) => {
             dispatch(loginUser(res.data))
             props.history.push('/user')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            if(err.response.status === 401){
+                alert('Username or Password is incorrect')
+            } else {
+                alert('Username is already taken')
+            }
+        })
     }
 
 

@@ -5,6 +5,9 @@ module.exports = {
         const db = req.app.get('db')
         const { username, password } = req.body
         const [ result ] = await db.auth.check_user(username)
+        if(password === ''){
+            return res.sendStatus(405)
+        }
         if( result ) {
             return res.status(409).send('Username already taken')
         }
@@ -35,10 +38,17 @@ module.exports = {
         req.session.destroy()
         res.sendStatus(200)
     },
-    editName: (req, res) => {
+    editName: async (req, res) => {
     const db = req.app.get('db')
     const { user } = req.session
     const { username } = req.body
+    if(username === ''){
+        return res.status(405).send('Please enter a Username')
+    }
+    const [ check ] = await db.auth.check_user(username)
+    if(check){
+        return res.status(409).send('Username is already taken')
+    }
     db.auth.update_user(user.user_id, username)
     }
 }

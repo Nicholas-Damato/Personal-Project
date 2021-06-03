@@ -1,12 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap");
+body {
+  background-color: #222121;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
 .user-page {
-  background-image: linear-gradient(#2e1760, #3423a6);
+  background-color: #222121;
   width: 100%;
   height: 100vh;
+  background-attachment: scroll;
+  height: 100%;
 }
 
 .home {
-  background-image: linear-gradient(#2e1760, #3423a6);
+  background-color: #222121;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -14,6 +25,7 @@
   flex-direction: column;
   font-family: "Oswald", sans-serif;
   font-size: 100px;
+  height: 100vh;
 }
 
 .button {
@@ -49,8 +61,14 @@
 }
 
 .sidebar {
-  border: 2px solid black;
+  box-shadow: 1px 1px 1px #7180b9;
   height: 100px;
+  background-color: #131313;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  top: 0%;
+  z-index: 10;
 }
 
 .in-side {
@@ -81,7 +99,7 @@
 }
 
 .page {
-  background-image: linear-gradient(#2e1760, #3423a6);
+  background-color: #222121;
   width: 100%;
   height: 100%;
 }
@@ -93,6 +111,9 @@
 
 .table {
   width: 100%;
+  padding-top: 100px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 th {
@@ -100,6 +121,9 @@ th {
   font-family: "Oswald", sans-serif;
   text-align: left;
   color: #ffff42;
+  text-decoration: underline;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 td {
@@ -130,7 +154,6 @@ td {
 .first-row {
   display: flex;
   flex-direction: row-reverse;
-  border: 1px solid black;
 }
 
 .user-title {
@@ -139,8 +162,20 @@ td {
   color: #ffff42;
   font-family: "Oswald", sans-serif;
   font-size: 45px;
-  height: 10px;
   align-items: center;
+  height: 10px;
+  padding-top: 100px;
+}
+
+.mount-title {
+  display: flex;
+  justify-content: center;
+  color: #ffff42;
+  font-family: "Oswald", sans-serif;
+  font-size: 45px;
+  align-items: center;
+  height: 30px;
+  margin-top: 50px;
 }
 
 .show {

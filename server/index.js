@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
+const nodemailer = require('nodemailer');
+
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -9,6 +11,7 @@ const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 const authCtrl = require('./controllers/authController')
 const miniCtrl = require('./controllers/minionController')
 const mountCtrl = require('./controllers/mountController')
+const nodeCtrl = require('./controllers/nodeMailCtrl')
 
 const app = express()
 
@@ -31,6 +34,36 @@ massive({
 })
 .catch(err => console.log(err))
 
+async function main() {
+    let transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'maryjane10@ethereal.email', // generated ethereal user
+        pass: 'Vzc4EbMnc4gHvq3Gsv', // generated ethereal password
+      },
+      tls:{
+          rejectUnauthorized: false
+      }
+    });
+  
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Nodemailer Contact <test@testing.com>"', // sender address
+      to: "gameink12345@gmail.com", // list of receivers
+      subject: "Hello ✔", // Subject line
+      text: "test test test", // plain text body
+      html: "<b>Hello world?</b>", // html body
+    });
+  
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}
+
+
+main().catch(console.error);
+
 
 // ENDPOINTS
 app.post(`/auth/register`, authCtrl.register)
@@ -47,3 +80,5 @@ app.get(`/api/mount`, mountCtrl.getMount)
 app.post(`/api/addmount/:mount_id`, mountCtrl.addMount)
 app.get(`/api/mountuser`, mountCtrl.getUserMount)
 app.delete(`/api/mount/:mount_id`, mountCtrl.deleteUserMount)
+
+app.post(`/send`, nodeCtrl.send)

@@ -14,7 +14,6 @@ const UserPage = (props) => {
 
     const toggleShow = () => {
         setShow(!show)
-        console.log(show)
     }
 
     const handleChange = (value) => {
@@ -36,7 +35,13 @@ const UserPage = (props) => {
         .then(res => {
 
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            if(err.response.status === 405){
+                alert('Please enter in a Username')
+            } else {
+                alert('that username is already taken')
+            }
+        })
     }
 
     const deleteMini = (mini_id) => {
@@ -82,9 +87,11 @@ const UserPage = (props) => {
             <div className='show-div'>
             <button className={`user-button ${show ? 'show' : ''} extra` } onClick={() => toggleShow()}> Change Username </button>
             <input  placeholder='Enter new username here' className={`${show ? '' : 'show'}`} onChange={(e) => handleChange(e.target.value)}/>
+            {/* <input  placeholder='Enter Email Here' className={`${show ? '' : 'show'}`} onChange={(e) => handleChange(e.target.value)}/> */}
             <button className={`${show ? '' : 'show'} try`} onClick={() => {
                 toggleShow()
                 handleNameChange(username)
+                setUsername('')
             }}> Save </button>
             </div>
                 </div>
@@ -108,7 +115,7 @@ const UserPage = (props) => {
                     )
                 })}
                 </table>
-                <header> <h1 className='user-title'> MOUNTS </h1></header>
+                <header> <h1 className='mount-title'> MOUNTS </h1></header>
                 <table className='table'>
             <tr className='first-row'>
                      <th>Source</th>

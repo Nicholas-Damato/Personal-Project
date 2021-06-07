@@ -38,5 +38,29 @@ module.exports = {
             res.status(200).send(mount)
         })
         .catch(err => console.log(err))
+    },
+    mountDesc: (req, res) => {
+        const db = req.app.get('db')
+        db.mounts.get_mounts_desc()
+        .then(mount => {
+            res.status(200).send(mount)
+        })
+        .catch(err => console.log(err))
+    },
+    mountSource: (req, res) => {
+        const db = req.app.get('db')
+        db.mounts.get_mounts_source_asc()
+        .then(mount => {
+            res.status(200).send(mount)
+        })
+        .catch(err => console.log(err))
+    },
+    mountSourceDesc: (req, res) => {
+        const db = req.app.get('db')
+        db.mounts.get_mounts_source_desc()
+        .then(mount => {
+            res.status(200).send(mount)
+        })
+        .catch(err => console.log(err))
     }
 }

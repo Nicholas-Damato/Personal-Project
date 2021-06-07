@@ -15,6 +15,7 @@ const UserPage = (props) => {
     const [ show, setShow ] = useState (false)
     const [ showTwo, setShowTwo] = useState(true)
     const dispatch = useDispatch()
+    
 
     const toggleShow = () => {
         setShow(!show)
@@ -111,7 +112,6 @@ const UserPage = (props) => {
                 <div className='in-side'>
             <Link className='link-button' to='/mini'> MINIONS </Link> 
             <Link className='link-button' to='/mount'> MOUNT </Link>
-            <Link className='link-button' to='/user'> USER PAGE </Link>
             <button className='user-button' onClick={() => handleLogout()}> Logout </button>
             <div className='show-div'>
             <button className={` extra ${show ? 'show' : ''} user-button` } onClick={() => toggleShow()}> Change Username </button>
@@ -130,7 +130,6 @@ const UserPage = (props) => {
                     <ul className={`${showTwo ? 'on' : ''}`}>
                         <li> <Link className='link-button' to='/mini'> MINIONS </Link> </li> 
                         <li> <Link className='link-button' to='/mount'> MOUNT </Link> </li> 
-                        <li><Link className='link-button' to='/user'> USER PAGE </Link> </li> 
                         <li><button className='user-button' onClick={() => handleLogout()}> Logout </button></li>
                     </ul>
                 </div>

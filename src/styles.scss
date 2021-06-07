@@ -247,6 +247,12 @@ td {
   margin: 0px;
 }
 
+.arrow {
+  background: none;
+  border: none;
+  color: yellow;
+}
+
 @media (max-width: 1000px) {
   .in-side {
     display: none;
@@ -271,7 +277,7 @@ td {
   .sidebar-two {
     @include navbar;
     background-color: $grey-black;
-    height: 200px;
+    height: 150px;
     position: fixed;
     width: 100%;
     top: 0%;

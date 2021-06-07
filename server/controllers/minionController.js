@@ -38,5 +38,29 @@ module.exports = {
             res.status(200).send(mini)
         })
         .catch(err => console.log(err))
+    },
+    descMinion: (req, res) => {
+        const db = req.app.get('db')
+        db.minions.get_minions_dsc()
+        .then(mini => {
+            res.status(200).send(mini)
+        })
+        .catch(err => console.log(err))
+    },
+    descSource: (req, res) => {
+        const db = req.app.get('db')
+        db.minions.get_minions_source_dsc()
+        .then(mini => {
+            res.status(200).send(mini)
+        })
+        .catch(err => console.log(err))
+    },
+    ascSource: (req, res) => {
+        const db = req.app.get('db')
+        db.minions.get_minions_source_asc()
+        .then(mini => {
+            res.status(200).send(mini)
+        })
+        .catch(err => console.log(err))
     }
 }

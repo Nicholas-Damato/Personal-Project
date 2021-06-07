@@ -231,6 +231,12 @@ td {
   margin: 0px;
 }
 
+.arrow {
+  background: none;
+  border: none;
+  color: yellow;
+}
+
 @media (max-width: 1000px) {
   .in-side {
     display: none;
@@ -257,7 +263,7 @@ td {
     box-shadow: 1px 1px 1px #7180b9;
     height: 100px;
     background-color: #131313;
-    height: 200px;
+    height: 150px;
     position: fixed;
     width: 100%;
     top: 0%;

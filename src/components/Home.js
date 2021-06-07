@@ -41,14 +41,16 @@ const Home = (props) => {
 
 
     // const { auth, setAuth, handleLogin, handleRegister } = useContext(AuthContext)
+    // onSubmit={handleLogin(username,password)}
+    // type='submit' <-------- goes on button
     return (
-        <div onSubmit={() => handleLogin(username,password)} className='home'>
+        <div className='home'>
             <h1 className='title'> The Collector </h1>
             <div className='position'>
            <h2 className='login'> Username: </h2> <input className='input' value={username} onChange={(e) => setUsername(e.target.value)}/>
            <h2 className='login'> Password: </h2> <input className='input' value={password} type='password' onChange={(e) => setPassword(e.target.value)}/>
             </div>
-            <button className='button' >Login</button>
+            <button className='button' onClick={() => handleLogin(username, password)}>Login</button>
             <button className='button' onClick={() => handleRegister(username, password)}>Register</button>
         </div>
         //  onClick={() => handleLogin(username, password)}

@@ -2,6 +2,8 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { AiOutlineMenu } from "react-icons/ai"
+import { BsFillCaretDownFill } from "react-icons/bs";
+import { BsFillCaretUpFill } from "react-icons/bs";
 import { useSelector, useDispatch } from 'react-redux'
 import { addToPage } from '../redux/itemReducer'
 
@@ -9,7 +11,52 @@ const MiniPage = (props) => {
     const [ mini, setMini ] = useState([])
     const [ showTwo, setShowTwo] = useState(true)
     const dispatch = useDispatch()
+    const [ order, setOrder ] = useState(false)
+    const [ orderSource, setOrderSource ] = useState(false)
 
+    
+    const orderChange = () => {
+        if(orderSource === true){
+            setOrderSource(false)
+        } 
+        if(order === true){
+            axios.get('/api/mini')
+            .then((res) => {
+                setMini(res.data)
+            })
+            .catch(err => console.log(err))
+            setOrder(false)
+        } else {
+            axios.get('/api/minidsc')
+            .then((res) => {
+                setMini(res.data)
+            })
+            .catch(err => console.log(err))
+            setOrder(true)
+        }
+    }
+    
+    const orderChangeSource = () => {
+        if(order === true){
+            setOrder(false)
+        } 
+        if(orderSource === true){
+            axios.get('/api/minisource')
+            .then((res) => {
+                setMini(res.data)
+            })
+            .catch(err => console.log(err))
+            setOrderSource(false)
+        } else {
+            axios.get('/api/minisourcedesc')
+            .then((res) => {
+                setMini(res.data)
+            })
+            .catch(err => console.log(err))
+            setOrderSource(true)
+        }
+    }
+    
     const toggleShowTwo = () => {
         setShowTwo(!showTwo)
     }
@@ -52,9 +99,10 @@ const MiniPage = (props) => {
             <div>
             <table className='table'>
             <tr className='first-row'>
-                                <th>Source</th>
-                                <th>Name</th>
-                                <th>Image</th>
+                                <th>Source <button className='arrow' onClick={() => orderChangeSource()}> {orderSource ? <BsFillCaretUpFill /> : <BsFillCaretDownFill /> } </button></th>
+                                <th>Name <button className='arrow' onClick={() => orderChange()}> {order ? <BsFillCaretUpFill /> : <BsFillCaretDownFill /> } </button> </th>
+                                <th>Image </th>
+                                
             </tr>
                 {mini.map((mini) => {
                     return (

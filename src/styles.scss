@@ -112,6 +112,7 @@ img {
   position: fixed;
   width: 100%;
   top: 0%;
+  transition: all 0.5s;
   z-index: 10;
 }
 
@@ -225,4 +226,64 @@ td {
 
 .try:hover {
   @include hover;
+}
+
+.on {
+  display: none;
+}
+
+.menu-button {
+  display: none;
+}
+
+.position {
+  display: flex;
+  flex-direction: column;
+}
+
+.login {
+  font: $font;
+  font-size: 25px;
+  margin: 0px;
+}
+
+@media (max-width: 1000px) {
+  .in-side {
+    display: none;
+  }
+  .menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  .user-button {
+    width: 104px;
+  }
+
+  .menu-button {
+    display: flex;
+    color: yellow;
+    height: 50px;
+    width: 50px;
+  }
+
+  .sidebar-two {
+    @include navbar;
+    background-color: $grey-black;
+    height: 200px;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    transition: all 0.5s;
+    z-index: 10;
+  }
+
+  .link-button {
+    display: flex;
+    height: 32px;
+    width: 100px;
+    list-style-image: none;
+    transition: all 1s;
+  }
 }

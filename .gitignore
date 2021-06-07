@@ -2,6 +2,9 @@
 
 .env
 
+db/minion_data.sql
+db/mount_data.sql
+
 # dependencies
 /node_modules
 /.pnp

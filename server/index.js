@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
-const nodemailer = require('nodemailer');
 
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
@@ -34,35 +33,7 @@ massive({
 })
 .catch(err => console.log(err))
 
-async function main() {
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: 'maryjane10@ethereal.email', // generated ethereal user
-        pass: 'Vzc4EbMnc4gHvq3Gsv', // generated ethereal password
-      },
-      tls:{
-          rejectUnauthorized: false
-      }
-    });
-  
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"Nodemailer Contact <test@testing.com>"', // sender address
-      to: "gameink12345@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "test test test", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
-  
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-}
 
-
-main().catch(console.error);
 
 
 // ENDPOINTS

@@ -14,6 +14,8 @@ const UserPage = (props) => {
     const [ userMount, setUserMount ] = useState([])
     const [ username, setUsername ] = useState('')
     const [ email, setEmail ] = useState('')
+    const [ miniInput, setMiniInput ] = useState('')
+    const [ mountInput, setMountInput] = useState('')
     const [ show, setShow ] = useState (false)
     const [ showTwo, setShowTwo] = useState(true)
     const dispatch = useDispatch()
@@ -35,6 +37,13 @@ const UserPage = (props) => {
         setEmail(value)
     }
 
+    const handleMini = (value) => {
+        setMiniInput(value)
+    }
+
+    const handleMount = (value) => {
+        setMountInput(value)
+    }
 
     const handleLogout = () => {
         axios.get(`/auth/logout`)
@@ -115,11 +124,12 @@ const UserPage = (props) => {
                 <div className='in-side'>
             <Link className='link-button' to='/mini'> MINIONS </Link> 
             <Link className='link-button' to='/mount'> MOUNT </Link>
+            <Link className='link-button' to='/info'> ABOUT </Link>
             <button className='user-button' onClick={() => handleLogout()}> Logout </button>
             <div className='show-div'>
             <button className={` extra ${show ? 'show' : ''} user-button` } onClick={() => toggleShow()}> Change Username </button>
             <input  placeholder='Enter new username here' className={`${show ? '' : 'show'}`} onChange={(e) => handleChange(e.target.value)}/>
-            <input  placeholder='Enter Email Here' className={`${show ? '' : 'show'}`} onChange={(e) => handleEmail(e.target.value)}/>
+            <input  placeholder='Enter Email here' className={`${show ? '' : 'show'}`} onChange={(e) => handleEmail(e.target.value)}/>
             <button className={`${show ? '' : 'show'} try`} onClick={() => {
                 toggleShow()
                 handleNameChange(username)
@@ -133,6 +143,7 @@ const UserPage = (props) => {
                     <ul className={`${showTwo ? 'on' : ''}`}>
                         <li> <Link className='link-button' to='/mini'> MINIONS </Link> </li> 
                         <li> <Link className='link-button' to='/mount'> MOUNT </Link> </li> 
+                        <li> <Link className='link-button' to='/info'> ABOUT </Link> </li>
                         <li><button className='user-button' onClick={() => handleLogout()}> Logout </button></li>
                     </ul>
                 </div>
@@ -141,13 +152,22 @@ const UserPage = (props) => {
 
             </div>
             <header> <h1 className='user-title'> MINIONS </h1></header>
+            <div className='search-two'>
+                <h2 className='search-title'>Search: </h2><input placeholder='Search minions here' value={miniInput} onChange={(e) => handleMini(e.target.value)} />
+                </div>
+                <div className='counter'>
+                <h2> {userMini.length} out of 407 </h2>
+                </div>
             <table className='table'>
             <tr className='first-row'>
                                 <th>Source </th>
                                 <th>Name </th>
                                 <th>Image</th>
             </tr>
-                {userMini.map((mini) => {
+                {userMini.filter(element => {
+                    return element.minion_name.includes(miniInput)
+                })
+                .map((mini) => {
                     return (
                         <div className='item' onClick={() => deleteMini(mini.minion_id)}>
                             <tr className='data'>
@@ -160,13 +180,22 @@ const UserPage = (props) => {
                 })}
                 </table>
                 <header> <h1 className='mount-title'> MOUNTS </h1></header>
+                <div className='search-two'>
+                <h2 className='search-title'>Search: </h2><input placeholder='Search mounts here' value={mountInput} onChange={(e) => handleMount(e.target.value)} />
+                </div>
+                <div className='counter'>
+                    <h2> {userMount.length} out of 183</h2>
+                </div>
                 <table className='table'>
             <tr className='first-row'>
                      <th>Source</th>
                      <th>Name</th>
                      <th>Image</th>
             </tr>
-                {userMount.map((mount) => {
+                {userMount.filter(element => {
+                    return element.mount_name.includes(mountInput)
+                })
+                .map((mount) => {
                     return (
                         <div className='item' onClick={() => deleteMount(mount.mount_id)}>
                             <tr className='data'>

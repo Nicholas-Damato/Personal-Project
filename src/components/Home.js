@@ -13,7 +13,7 @@ const Home = (props) => {
         axios.post(`/auth/register`, { username, password })
         .then(res => {
             dispatch(loginUser(res.data))
-            props.history.push('/user')
+            props.history.push('/info')
         })
         .catch(err => {
             if(err.response.status === 405){
@@ -28,7 +28,7 @@ const Home = (props) => {
         axios.post(`/auth/login`, { username, password })
         .then(res => {
             dispatch(loginUser(res.data))
-            props.history.push('/user')
+            props.history.push('/info')
         })
         .catch(err => {
             if(err.response.status === 401){

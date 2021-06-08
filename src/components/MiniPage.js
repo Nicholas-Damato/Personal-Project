@@ -91,19 +91,21 @@ const MiniPage = (props) => {
             <Link className='link-button' to='/mini'> MINIONS </Link> 
             <Link className='link-button' to='/mount'> MOUNT </Link>
             <Link className='link-button' to='/user'> USER PAGE </Link>
+            <Link className='link-button' to='/info'> ABOUT </Link>
                 </div>
             <div className='menu'>
                     <h4> <AiOutlineMenu className='menu-button' onClick={() => toggleShowTwo()} /> </h4>
                     <ul className={`${showTwo ? 'on' : ''}`}>
                         <li> <Link className='link-button' to='/mini'> MINIONS </Link> </li> 
                         <li> <Link className='link-button' to='/mount'> MOUNT </Link> </li> 
-                        <li><Link className='link-button' to='/user'> USER PAGE </Link> </li> 
+                        <li><Link className='link-button' to='/user'> USER PAGE </Link> </li>
+                        <li><Link className='link-button' to='/info'> ABOUT </Link></li> 
                     </ul>
                 </div>
             </header>
             <div>
                 <div className='search'>
-                <h2 className='search-title'>Search: </h2><input value={userInput} onChange={(e) => handleInput(e.target.value)} />
+                <h2 className='search-title'>Search: </h2><input placeholder='Type here' value={userInput} onChange={(e) => handleInput(e.target.value)} />
                 </div>
             <table className='table'>
             <tr className='first-row'>

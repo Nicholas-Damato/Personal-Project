@@ -244,10 +244,34 @@ td {
   align-items: center;
 }
 
+.search-two {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .search-title {
   color: #ffff42;
   font: "Oswald", sans-serif;
   font-size: 20px;
+}
+
+.counter {
+  margin: 0;
+  margin-right: 100px;
+  display: flex;
+  color: #ffff42;
+  font: "Oswald", sans-serif;
+  font-size: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.body {
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 @media (max-width: 1000px) {

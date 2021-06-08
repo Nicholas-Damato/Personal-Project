@@ -260,10 +260,34 @@ td {
   align-items: center;
 }
 
+.search-two {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .search-title {
   color: $yellow;
   font: $font;
   font-size: 20px;
+}
+
+.counter {
+  margin: 0;
+  margin-right: 100px;
+  display: flex;
+  color: $yellow;
+  font: $font;
+  font-size: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.body {
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 @media (max-width: 1000px) {

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { AiOutlineMenu } from "react-icons/ai"
+import { BsFillCaretDownFill } from "react-icons/bs";
+import { BsFillCaretUpFill } from "react-icons/bs";
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../redux/authReducer'
@@ -32,6 +34,7 @@ const UserPage = (props) => {
     const handleEmail = (value) => {
         setEmail(value)
     }
+
 
     const handleLogout = () => {
         axios.get(`/auth/logout`)
@@ -140,8 +143,8 @@ const UserPage = (props) => {
             <header> <h1 className='user-title'> MINIONS </h1></header>
             <table className='table'>
             <tr className='first-row'>
-                                <th>Source</th>
-                                <th>Name</th>
+                                <th>Source </th>
+                                <th>Name </th>
                                 <th>Image</th>
             </tr>
                 {userMini.map((mini) => {

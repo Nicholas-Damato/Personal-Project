@@ -10,6 +10,7 @@ import { addToPage } from '../redux/itemReducer'
 const MountPage = (props) => {
     const [ mount, setMount ] = useState([])
     const [ showTwo, setShowTwo ] = useState(true)
+    const [ userInput, setUserInput ] = useState('')
     const dispatch = useDispatch()
     const [ order, setOrder ] = useState(false)
     const [ orderSource, setOrderSource ] = useState(false)
@@ -56,7 +57,10 @@ const MountPage = (props) => {
             setOrderSource(true)
         }
     }
-    
+
+    const handleInput = (value) => {
+        setUserInput(value)
+    }
     
     const toggleShowTwo = () => {
         setShowTwo(!showTwo)
@@ -98,13 +102,19 @@ const MountPage = (props) => {
                 </div>
             </header>
             <div>
+            <div className='search'>
+                <h2 className='search-title'>Search: </h2><input value={userInput} onChange={(e) => handleInput(e.target.value)} />
+                </div>
             <table className='table'>
             <tr className='first-row'>
                                 <th>Source <button className='arrow' onClick={() => orderChangeSource()}> {orderSource ? <BsFillCaretUpFill /> : <BsFillCaretDownFill /> } </button></th>
                                 <th>Name <button className='arrow' onClick={() => orderChange()}> {order ? <BsFillCaretUpFill /> : <BsFillCaretDownFill /> } </button> </th>
                                 <th>Image</th>
             </tr>
-                {mount.map((mount) => {
+                {mount.filter(element => {
+                    return element.mount_name.includes(userInput)
+                })
+                .map((mount) => {
                     return (
                         <div className='item' onClick={() => addToPage(mount.mount_id)}>
                             <tr className='data'>

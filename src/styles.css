@@ -112,7 +112,6 @@ img {
 
 .table {
   width: 100%;
-  padding-top: 100px;
   padding-left: 100px;
   padding-right: 100px;
 }
@@ -235,6 +234,20 @@ td {
   background: none;
   border: none;
   color: yellow;
+}
+
+.search {
+  display: flex;
+  margin-top: 100px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-title {
+  color: #ffff42;
+  font: "Oswald", sans-serif;
+  font-size: 20px;
 }
 
 @media (max-width: 1000px) {

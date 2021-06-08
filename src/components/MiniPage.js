@@ -10,6 +10,7 @@ import { addToPage } from '../redux/itemReducer'
 const MiniPage = (props) => {
     const [ mini, setMini ] = useState([])
     const [ showTwo, setShowTwo] = useState(true)
+    const [ userInput, setUserInput ] = useState('')
     const dispatch = useDispatch()
     const [ order, setOrder ] = useState(false)
     const [ orderSource, setOrderSource ] = useState(false)
@@ -34,6 +35,10 @@ const MiniPage = (props) => {
             .catch(err => console.log(err))
             setOrder(true)
         }
+    }
+
+    const handleInput = (value) => {
+        setUserInput(value)
     }
     
     const orderChangeSource = () => {
@@ -97,6 +102,9 @@ const MiniPage = (props) => {
                 </div>
             </header>
             <div>
+                <div className='search'>
+                <h2 className='search-title'>Search: </h2><input value={userInput} onChange={(e) => handleInput(e.target.value)} />
+                </div>
             <table className='table'>
             <tr className='first-row'>
                                 <th>Source <button className='arrow' onClick={() => orderChangeSource()}> {orderSource ? <BsFillCaretUpFill /> : <BsFillCaretDownFill /> } </button></th>
@@ -104,7 +112,10 @@ const MiniPage = (props) => {
                                 <th>Image </th>
                                 
             </tr>
-                {mini.map((mini) => {
+                {mini.filter(element => {
+                    return element.minion_name.includes(userInput)
+                })
+                .map((mini) => {
                     return (
                         <div className='item' onClick={() => addToPage(mini.minion_id)}>
                             <tr className='data'>

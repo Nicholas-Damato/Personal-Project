@@ -19,3 +19,7 @@
 .button:hover {
   background-color: yellow;
 }
+
+.custom-toast {
+  background-color: yellow;
+}

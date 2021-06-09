@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 import { AiOutlineMenu } from "react-icons/ai"
-import { BsFillCaretDownFill } from "react-icons/bs";
-import { BsFillCaretUpFill } from "react-icons/bs";
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../redux/authReducer'
 import { addToPage } from '../redux/itemReducer'
+import { toast } from 'react-toastify'
 import axios from 'axios'
 
 
@@ -156,6 +155,7 @@ const UserPage = (props) => {
                 <h2 className='search-title'>Search: </h2><input placeholder='Search minions here' value={miniInput} onChange={(e) => handleMini(e.target.value)} />
                 </div>
                 <div className='counter'>
+                <h2> Final Fantasy XIV </h2>
                 <h2> {userMini.length} out of 407 </h2>
                 </div>
             <table className='table'>
@@ -169,11 +169,14 @@ const UserPage = (props) => {
                 })
                 .map((mini) => {
                     return (
-                        <div className='item' onClick={() => deleteMini(mini.minion_id)}>
+                        <div className='item' onClick={() => {
+                            deleteMini(mini.minion_id)
+                            toast.error(`you have successfully deleted ${mini.minion_name}`)
+                            }}>
                             <tr className='data'>
                                 <td>{mini.minion_description}</td>
                                 <td>{mini.minion_name}</td>
-                                <td><img src={mini.minion_picture} /></td>
+                                <td><img src={mini.minion_picture} alt={mini.minion_name} /></td>
                             </tr>
                         </div>
                     )
@@ -184,6 +187,7 @@ const UserPage = (props) => {
                 <h2 className='search-title'>Search: </h2><input placeholder='Search mounts here' value={mountInput} onChange={(e) => handleMount(e.target.value)} />
                 </div>
                 <div className='counter'>
+                    <h2> Final Fantasy XIV </h2>
                     <h2> {userMount.length} out of 183</h2>
                 </div>
                 <table className='table'>
@@ -197,11 +201,14 @@ const UserPage = (props) => {
                 })
                 .map((mount) => {
                     return (
-                        <div className='item' onClick={() => deleteMount(mount.mount_id)}>
+                        <div className='item' onClick={() => {
+                            deleteMount(mount.mount_id)
+                            toast.error(`you have successfully deleted ${mount.mount_name}`)
+                            }}>
                             <tr className='data'>
                                 <td>{mount.mount_description}</td>
                                 <td>{mount.mount_name}</td>
-                                <td className='image'><img src={mount.mount_picture} /></td>
+                                <td className='image'><img src={mount.mount_picture} alt={mount.mount_name} /></td>
                             </tr>
                         </div>
                     

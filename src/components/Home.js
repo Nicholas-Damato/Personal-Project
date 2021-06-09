@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useState } from 'react'
 // import { AuthContext } from '../context/AuthContext'
 import axios from 'axios'
 import { loginUser } from '../redux/authReducer'
@@ -18,7 +18,7 @@ const Home = (props) => {
         .catch(err => {
             if(err.response.status === 405){
                 alert('Please enter in a valid password')
-            } else if ( err.response.status = 409){
+            } else if ( err.response.status === 409){
                 alert('Username is already taken')
             }
         })

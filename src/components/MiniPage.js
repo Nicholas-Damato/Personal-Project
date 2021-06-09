@@ -5,16 +5,18 @@ import { AiOutlineMenu } from "react-icons/ai"
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { BsFillCaretUpFill } from "react-icons/bs";
 import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 import { addToPage } from '../redux/itemReducer'
 
 const MiniPage = (props) => {
     const [ mini, setMini ] = useState([])
+    const [ userMini, setUserMini ] = useState([])
     const [ showTwo, setShowTwo] = useState(true)
     const [ userInput, setUserInput ] = useState('')
     const dispatch = useDispatch()
     const [ order, setOrder ] = useState(false)
     const [ orderSource, setOrderSource ] = useState(false)
-
+    
     
     const orderChange = () => {
         if(orderSource === true){
@@ -65,6 +67,14 @@ const MiniPage = (props) => {
     const toggleShowTwo = () => {
         setShowTwo(!showTwo)
     }
+
+    useEffect(() => {
+        axios.get(`/api/miniuser`)
+        .then(res => {
+            setUserMini(res.data)
+        })
+        .catch(err => console.log(err))
+    })
     
     useEffect(() => {
         axios.get('/api/mini')
@@ -74,15 +84,20 @@ const MiniPage = (props) => {
         .catch(err => console.log(err))
     }, [])
 
-    const addToPage = (minion_id) => {
+    const addToPage = (minion_id, minion_name) => {
+        for(let i = 0; i < userMini.length; i++){
+            if(userMini[i].minion_id === minion_id){
+                return toast.error(`You already have the ${userMini[i].minion_name}`)
+            } 
+        }
         axios.post(`/api/addmini/${minion_id}`)
         .then((res) => {
             dispatch(addToPage(res.data))
+            setUserMini([...userMini, minion_id])
         })
         .catch(err => console.log(err))
     }
 
-    console.log(mini)
 
     return(
         <div className='page'>
@@ -119,11 +134,11 @@ const MiniPage = (props) => {
                 })
                 .map((mini) => {
                     return (
-                        <div className='item' onClick={() => addToPage(mini.minion_id)}>
+                        <div className='item' onClick={() => addToPage(mini.minion_id, mini.minion_name)}>
                             <tr className='data'>
                                 <td>{mini.minion_description}</td>
                                 <td>{mini.minion_name}</td>
-                                <td><img src={mini.minion_picture} /></td>
+                                <td><img src={mini.minion_picture} alt={mini.minion_name} /></td>
                             </tr>
                         </div>
                     )

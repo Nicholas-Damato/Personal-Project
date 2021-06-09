@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AiOutlineMenu } from "react-icons/ai"
 
+import 'react-toastify/dist/ReactToastify.css'
 
 const Info = (props) => {
     const [ showTwo, setShowTwo] = useState(true)
 
+
     const toggleShowTwo = () => {
         setShowTwo(!showTwo)
     }
-
 
     return (
         <div className='page'>

@@ -260,11 +260,12 @@ td {
 .counter {
   margin: 0;
   margin-right: 100px;
+  margin-left: 100px;
   display: flex;
   color: #ffff42;
   font: "Oswald", sans-serif;
   font-size: 10px;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 

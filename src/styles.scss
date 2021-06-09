@@ -276,11 +276,12 @@ td {
 .counter {
   margin: 0;
   margin-right: 100px;
+  margin-left: 100px;
   display: flex;
   color: $yellow;
   font: $font;
   font-size: 10px;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 

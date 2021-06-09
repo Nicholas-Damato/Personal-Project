@@ -6,11 +6,13 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 import { BsFillCaretUpFill } from "react-icons/bs";
 import { useSelector, useDispatch } from 'react-redux'
 import { addToPage } from '../redux/itemReducer'
+import { toast } from 'react-toastify'
 
 const MountPage = (props) => {
     const [ mount, setMount ] = useState([])
     const [ showTwo, setShowTwo ] = useState(true)
     const [ userInput, setUserInput ] = useState('')
+    const [ userMount, setUserMount ] = useState([])
     const dispatch = useDispatch()
     const [ order, setOrder ] = useState(false)
     const [ orderSource, setOrderSource ] = useState(false)
@@ -74,10 +76,24 @@ const MountPage = (props) => {
         .catch(err => console.log(err))
     }, [])
 
-    const addToPage = (mount_id) => {
-        axios.post(`/api/addmount/${mount_id}`)
+    useEffect(() => {
+        axios.get('/api/mountuser')
+        .then((res) => {
+            setUserMount(res.data)
+        })
+        .catch(err => console.log(err))
+    })
+
+    const addToPage = (mount_id, mount_name) => {
+        for(let i = 0; i < userMount.length; i++){
+            if(userMount[i].mount_id === mount_id){
+                return toast.error(`You already have the ${userMount[i].mount_name}`)
+            } 
+        }
+       axios.post(`/api/addmount/${mount_id}`)
         .then((res) => {
             dispatch(addToPage(res.data))
+            setUserMount([...userMount, mount_id])
         })
         .catch(err => console.log(err))
     }
@@ -118,11 +134,11 @@ const MountPage = (props) => {
                 })
                 .map((mount) => {
                     return (
-                        <div className='item' onClick={() => addToPage(mount.mount_id)}>
+                        <div className='item' onClick={() => addToPage(mount.mount_id, mount.mount_name)}>
                             <tr className='data'>
                                 <td>{mount.mount_description}</td>
                                 <td>{mount.mount_name}</td>
-                                <td className='image'><img src={mount.mount_picture} /></td>
+                                <td className='image'><img src={mount.mount_picture} alt={mount.mount_name} /></td>
                             </tr>
                         </div>
                     

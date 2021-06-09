@@ -255,6 +255,11 @@ td {
   color: #ffff42;
   font: "Oswald", sans-serif;
   font-size: 20px;
+  margin-right: 5px;
+}
+
+.input-search {
+  margin-top: 5px;
 }
 
 .counter {
@@ -273,6 +278,10 @@ td {
   margin-top: 100px;
   margin-left: 400px;
   margin-right: 400px;
+}
+
+.info {
+  color: #7180b9;
 }
 
 @media (max-width: 1000px) {

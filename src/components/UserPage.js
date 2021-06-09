@@ -61,9 +61,11 @@ const UserPage = (props) => {
         })
         .catch(err => {
             if(err.response.status === 405){
-                alert('Please enter in a Username')
+                // alert('Please enter in a Username')
+                toast.error('Please enter in a username.')
             } else {
-                alert('that username is already taken')
+                // alert('that username is already taken')
+                toast.error('That username is already taken!')
             }
         })
     }
@@ -71,11 +73,11 @@ const UserPage = (props) => {
     const sendEmail = () => {
         axios.post(`/send`, { email, username })
         .then(res => {
-
+            
         })
         .catch(err => {
             if(err.response.status === 406){
-                alert('Please enter a valid email')
+                toast.error('Please put in a valid email!')
             }
             console.log(err)
         })
@@ -152,7 +154,7 @@ const UserPage = (props) => {
             </div>
             <header> <h1 className='user-title'> MINIONS </h1></header>
             <div className='search-two'>
-                <h2 className='search-title'>Search: </h2><input placeholder='Search minions here' value={miniInput} onChange={(e) => handleMini(e.target.value)} />
+                <h2 className='search-title'>Search: </h2><input className='input-search' placeholder='Search minions here' value={miniInput} onChange={(e) => handleMini(e.target.value)} />
                 </div>
                 <div className='counter'>
                 <h2> Final Fantasy XIV </h2>
@@ -171,7 +173,7 @@ const UserPage = (props) => {
                     return (
                         <div className='item' onClick={() => {
                             deleteMini(mini.minion_id)
-                            toast.error(`you have successfully deleted ${mini.minion_name}`)
+                            toast.warning(`you have successfully deleted ${mini.minion_name}`)
                             }}>
                             <tr className='data'>
                                 <td>{mini.minion_description}</td>
@@ -184,7 +186,7 @@ const UserPage = (props) => {
                 </table>
                 <header> <h1 className='mount-title'> MOUNTS </h1></header>
                 <div className='search-two'>
-                <h2 className='search-title'>Search: </h2><input placeholder='Search mounts here' value={mountInput} onChange={(e) => handleMount(e.target.value)} />
+                <h2 className='search-title'>Search: </h2><input className='input-search' placeholder='Search mounts here' value={mountInput} onChange={(e) => handleMount(e.target.value)} />
                 </div>
                 <div className='counter'>
                     <h2> Final Fantasy XIV </h2>
@@ -203,7 +205,7 @@ const UserPage = (props) => {
                     return (
                         <div className='item' onClick={() => {
                             deleteMount(mount.mount_id)
-                            toast.error(`you have successfully deleted ${mount.mount_name}`)
+                            toast.warning(`you have successfully deleted ${mount.mount_name}`)
                             }}>
                             <tr className='data'>
                                 <td>{mount.mount_description}</td>

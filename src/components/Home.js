@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { loginUser } from '../redux/authReducer'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const Home = (props) => {
     const dispatch = useDispatch()
@@ -17,9 +18,11 @@ const Home = (props) => {
         })
         .catch(err => {
             if(err.response.status === 405){
-                alert('Please enter in a valid password')
+                toast.error('Please enter in a valid password')
             } else if ( err.response.status === 409){
-                alert('Username is already taken')
+                toast.error('Username is already taken')
+            } else if ( err.response.status === 410) {
+                toast.error('Please enter a valid username')
             }
         })
     }
@@ -32,9 +35,9 @@ const Home = (props) => {
         })
         .catch(err => {
             if(err.response.status === 401){
-                alert('Username or Password is incorrect')
+                toast.error('Username or Password is Incorrect')
             } else {
-                alert('Username is already taken')
+                toast.error('Username is already taken')
             }
         })
     }

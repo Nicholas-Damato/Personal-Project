@@ -92,6 +92,7 @@ const MountPage = (props) => {
         }
        axios.post(`/api/addmount/${mount_id}`)
         .then((res) => {
+            toast.dark(`You have successfully added "${mount_name}"`)
             dispatch(addToPage(res.data))
             setUserMount([...userMount, mount_id])
         })
@@ -121,7 +122,7 @@ const MountPage = (props) => {
             </header>
             <div>
             <div className='search'>
-                <h2 className='search-title'>Search: </h2><input placeholder='Type here' value={userInput} onChange={(e) => handleInput(e.target.value)} />
+                <h2 className='search-title'>Search: </h2><input className='input-search' placeholder='Type here' value={userInput} onChange={(e) => handleInput(e.target.value)} />
                 </div>
             <table className='table'>
             <tr className='first-row'>

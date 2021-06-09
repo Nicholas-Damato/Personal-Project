@@ -8,6 +8,9 @@ module.exports = {
         if(password === ''){
             return res.sendStatus(405)
         }
+        if(username === ''){
+            return res.sendStatus(410)
+        }
         if( result ) {
             return res.status(409).send('Username already taken')
         }

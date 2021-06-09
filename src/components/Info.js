@@ -13,7 +13,7 @@ const Info = (props) => {
     }
 
     return (
-        <div className='page'>
+        <div className='page info'>
             <header className={`${showTwo ? 'sidebar' : 'sidebar-two'}`}>
                 <div className='in-side'>
             <Link className='link-button' to='/mini'> MINIONS </Link> 
